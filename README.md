@@ -1,7 +1,19 @@
 # MouseTrap
-Remake of the Mouse Trap arcade, made only for study purpose
+Remake of the Mouse Trap arcade from Exidy , made only for study purpose
 
-Done:
+Software utilizados:
+- Unity 2019.4.1f1 (64-bit)
+- Paint.net
+
+Sprites / Gráficos (ripped by 125scratch / theses sprites were made by Exidy):
+- https://www.spriters-resource.com/fullview/116581/
+
+Others Resources:
+- https://videogamehistory.fandom.com/wiki/Mouse_Trap_(arcade_game)
+- https://www.youtube.com/watch?v=DKB09AiQC1w
+
+## Tasks:
+### Done
 - Colisão dos blocos; 
 - Adicionar Colisao aos sprites das portas;
 - Configurar Colisao nos prefabs das portas;
@@ -17,14 +29,14 @@ Done:
 - Implementar animação do Rato;
 
 
-To Do:
+### To Do
 - Implementar ossos;
 - Implementar mudança para cachorro;
 - Implementar score;
 - Implementar posição inicial igual arcade (parcialmente implementada, tem q acertar isso para iniciar com animação inicial igual do arcade);
 
 
-To Research:
+### To Research
 - Estado inicial do tabuleiro;
 - Como implementar controle touch (Mobile);
 - Como fazer a tela se tornar responsiva (Mobile);
