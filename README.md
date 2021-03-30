@@ -10,6 +10,7 @@ Sprites / Gráficos (ripped by 125scratch / theses sprites were made by Exidy):
 
 Others Resources:
 - https://videogamehistory.fandom.com/wiki/Mouse_Trap_(arcade_game)
+- https://strategywiki.org/wiki/Mouse_Trap
 - https://www.youtube.com/watch?v=DKB09AiQC1w
 
 ## Tasks:
