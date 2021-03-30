@@ -1,11 +1,11 @@
 # MouseTrap
 Remake of the Mouse Trap arcade from Exidy , made only for study purpose
 
-Software utilizados:
+Using:
 - Unity 2019.4.1f1 (64-bit)
 - Paint.net
 
-Sprites / Gráficos (ripped by 125scratch / theses sprites were made by Exidy):
+Sprites (ripped by 125scratch / theses sprites were made by Exidy):
 - https://www.spriters-resource.com/fullview/116581/
 
 Others Resources:
@@ -15,33 +15,27 @@ Others Resources:
 
 ## Tasks:
 ### Done
-- Colisão dos blocos; 
-- Adicionar Colisao aos sprites das portas;
-- Configurar Colisao nos prefabs das portas;
-- Setar neighbors dos pathnodes;
-- Implementar botão que muda a posição dos portais;
-- Alterar nome das classes (começando por maíuscula);
-- Verificar se movimentação será por nodes ou por colisão (falta ver como vai ser a parte dos portais);
-- Alterar movimentação; (para ficar igual a do arcade, falta verificar e implementar comportamento quando se pressiona pra uma direção q não tem passagem);
-- Adequar movimentação nova à colisao das porta (conforme feito na door_blue02b. Já mexi nas doors, faltam os pathnodes);
-- Verificar como funcionam os portais (e implementar);
-- Verificar se existem mais fases (Não);
-- Adicionar queijos;
-- Implementar animação do Rato;
+- Implements the movement (nodes); 
+- Add colision in the doors sprites;
+- Configure collision in door´s prefabs;
+- Set pathnodes´s neighbors in the map;
+- Implement door´s changes (open/close) mechanics;
+- Implement the movement to be the same of the original arcade´s version;
+- Add cheeses;
+- Implement the mouse movement animation;
 
 
 ### To Do
-- Implementar ossos;
-- Implementar mudança para cachorro;
-- Implementar score;
-- Implementar posição inicial igual arcade (parcialmente implementada, tem q acertar isso para iniciar com animação inicial igual do arcade);
+- Include "Bones" and implement the mechanics;
+- Implement Mouse to Dog mechanics;
+- Implement score;
+- Implement inition position, and the animation, like the original from the arcade (partial implemented)
 
 
 ### To Research
-- Estado inicial do tabuleiro;
-- Como implementar controle touch (Mobile);
-- Como fazer a tela se tornar responsiva (Mobile);
-- ver como implementar a IA dos gatos;
-- Verificar IA dos gatos;
-- Verificar movimentação da Ave;
-- Verificar regras de aparecimento das comidas bonus;
+- Initial state of the board;
+- How implements touch control (Mobile version);
+- How change the gui to be responsive (Mobile version);
+- AI from the cats;
+- Bird mechanics;
+- Bonus food mechanics;
