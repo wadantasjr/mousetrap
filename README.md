@@ -11,6 +11,9 @@ Sprites (ripped by 125scratch / theses sprites were made by Exidy):
 Others Resources:
 - https://videogamehistory.fandom.com/wiki/Mouse_Trap_(arcade_game)
 - https://strategywiki.org/wiki/Mouse_Trap
+- https://www.arcade-history.com/?n=mousetrap&page=detail&id=1682
+- https://www.giantbomb.com/mouse-trap/3030-2276/
+- https://www.arcade-museum.com/game_detail.php?game_id=8765
 - https://www.youtube.com/watch?v=DKB09AiQC1w
 
 ## Tasks:
