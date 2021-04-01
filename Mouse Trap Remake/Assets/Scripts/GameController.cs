@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -18,6 +19,10 @@ public class GameController : MonoBehaviour
 
     public GameObject Cheese = null;
     public GameObject PathNodes = null;
+
+    private int Score = 0;
+
+    public TMP_Text TxtScore = null;
 
     private void Awake()
     {
@@ -60,14 +65,23 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void AddToScore(int value)
+    {
+        Score += value;
+    }
 
     void Update()
     {
         //Game Loop
 
         CheckInput();
+        RefreshScore();
     }
 
+    private void RefreshScore()
+    {
+        TxtScore.text = Score.ToString();
+    }
 
     private void CheckInput()
     {

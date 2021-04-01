@@ -267,36 +267,44 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        switch(col.gameObject.tag)
+        try
         {
-            case "Door":
-                direction = Vector2.zero;
-                nextNode = currentNode;
-                this.transform.position = currentNode.transform.position;
-                break;
-            case "PathNode": //Only PathNodes with collision (trigger)
-                pathNodeTriggeredName = col.gameObject.name; //Extract number in the name
-                break;
-            case "Portal": //PathNode taged as Portal with collision (trigger)
-                foreach(PortalIn2Out pio in portalIn2Out)
-                {
-                    if (pio.PortalIn.name == col.gameObject.name && pio.PathNodeTriggered.name == pathNodeTriggeredName)
+            switch (col.gameObject.tag)
+            {
+                case "Door":
+                    direction = Vector2.zero;
+                    nextNode = currentNode;
+                    this.transform.position = currentNode.transform.position;
+                    break;
+                case "PathNode": //Only PathNodes with collision (trigger)
+                    pathNodeTriggeredName = col.gameObject.name; //Extract number in the name
+                    break;
+                case "Portal": //PathNode taged as Portal with collision (trigger)
+                    foreach (PortalIn2Out pio in portalIn2Out)
                     {
-                        direction = Vector2.zero;
-                        currentNode = pio.PortalOut;
-                        nextNode = currentNode;
-                        this.transform.position = currentNode.transform.position;
-                        break;
+                        if (pio.PortalIn.name == col.gameObject.name && pio.PathNodeTriggered.name == pathNodeTriggeredName)
+                        {
+                            direction = Vector2.zero;
+                            currentNode = pio.PortalOut;
+                            nextNode = currentNode;
+                            this.transform.position = currentNode.transform.position;
+                            break;
+                        }
                     }
-                }
-                break;
-            case "Cheese": //Todo: Score
-                Destroy(col.gameObject);
-                break;
+                    break;
+                case "Cheese": //Todo: Score
+                    GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
+                    Destroy(col.gameObject);
+                    break;
+            }
         }
+        catch (Exception e)
+        {
+            Debug.LogError("Player::OnTriggerStay2D: " + e);
+            Debug.Log(col.gameObject.name + "(" + col.gameObject.tag + ") : " + gameObject.name + " : " + Time.time);
+            Debug.Log("pathNodeNumberTriggered : " + pathNodeTriggeredName);
 
-        Debug.Log(col.gameObject.name + "(" + col.gameObject.tag + ") : " + gameObject.name + " : " + Time.time);
-        Debug.Log("pathNodeNumberTriggered : " + pathNodeTriggeredName);
+        }
     }
     private void MovePlayer()
     {

@@ -31,7 +31,7 @@ Others Resources:
 ### To Do
 - Include "Bones" and implement the mechanics;
 - Implement Mouse to Dog mechanics;
-- Implement score;
+- Implement score (Partially: i have to change to the arcade originals fonts);
 - Implement inition position, and the animation, like the original from the arcade (partial implemented)
 
 
