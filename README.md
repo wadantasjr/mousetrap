@@ -26,12 +26,11 @@ Others Resources:
 - Implement the movement to be the same of the original arcade´s version;
 - Add cheeses;
 - Implement the mouse movement animation;
-
+- Implement score;
 
 ### To Do
 - Include "Bones" and implement the mechanics;
 - Implement Mouse to Dog mechanics;
-- Implement score (Partially: i have to change to the arcade originals fonts);
 - Implement inition position, and the animation, like the original from the arcade (partial implemented)
 
 
