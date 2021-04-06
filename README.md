@@ -27,9 +27,10 @@ Others Resources:
 - Add cheeses;
 - Implement the mouse movement animation;
 - Implement score;
+- Added the original font;
 
 ### To Do
-- Include "Bones" and implement the mechanics;
+- Include "Bones" and implement the mechanics (mouse can save a maximum of 6 bones);
 - Implement Mouse to Dog mechanics;
 - Implement inition position, and the animation, like the original from the arcade (partial implemented)
 

@@ -24,6 +24,17 @@ public class GameController : MonoBehaviour
 
     public TMP_Text TxtScore = null;
 
+    private static readonly System.Random getrandom = new System.Random();
+
+    //Function to get random number
+    public int GetRandomNumber(int min, int max)
+    {
+        lock (getrandom) // synchronize
+        {
+            return getrandom.Next(min, max);
+        }
+    }
+
     private void Awake()
     {
         if (instance != null)

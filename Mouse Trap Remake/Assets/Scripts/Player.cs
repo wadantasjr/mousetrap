@@ -276,22 +276,35 @@ public class Player : MonoBehaviour
                     nextNode = currentNode;
                     this.transform.position = currentNode.transform.position;
                     break;
-                case "PathNode": //Only PathNodes with collision (trigger)
-                    pathNodeTriggeredName = col.gameObject.name; //Extract number in the name
-                    break;
+                //Old portal mechanic----------------------------------------------------------
+                //case "PathNode": //Only PathNodes with collision (trigger)
+                //    pathNodeTriggeredName = col.gameObject.name; //Extract number in the name
+                //    break;
+                //-----------------------------------------------------------------------------
                 case "Portal": //PathNode taged as Portal with collision (trigger)
-                    foreach (PortalIn2Out pio in portalIn2Out)
+                    //modifying the mechanics of the portals for the destination portal be random, just as it is in the original game
+                    if (portalIn2Out.Length > 0)
                     {
-                        if (pio.PortalIn.name == col.gameObject.name && pio.PathNodeTriggered.name == pathNodeTriggeredName)
-                        {
-                            direction = Vector2.zero;
-                            currentNode = pio.PortalOut;
-                            nextNode = currentNode;
-                            this.transform.position = currentNode.transform.position;
-                            break;
-                        }
+                        int toPortalOut = GameController.instance.GetRandomNumber(0, portalIn2Out.Length);
+                        direction = Vector2.zero;
+                        currentNode = portalIn2Out[toPortalOut].PortalOut; ;
+                        nextNode = currentNode;
+                        this.transform.position = currentNode.transform.position;
                     }
                     break;
+                //Old portal mechanic-------------------------------------------------------------------------------------
+                //foreach (PortalIn2Out pio in portalIn2Out)
+                //{
+                //    if (pio.PortalIn.name == col.gameObject.name && pio.PathNodeTriggered.name == pathNodeTriggeredName)
+                //    {
+                //        direction = Vector2.zero;
+                //        currentNode = pio.PortalOut;
+                //        nextNode = currentNode;
+                //        this.transform.position = currentNode.transform.position;
+                //        break;
+                //    }
+                //}
+                //--------------------------------------------------------------------------------------------------------
                 case "Cheese": //Todo: Score
                     GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
                     Destroy(col.gameObject);
