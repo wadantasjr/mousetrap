@@ -8,6 +8,7 @@ TagManager:
   - Portal
   - PathNode
   - Cheese
+  - Bone
   layers:
   - Default
   - TransparentFX

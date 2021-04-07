@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
 
     public TMP_Text TxtScore = null;
 
+    public BoneCounter BoneCounter = null;
+
     private static readonly System.Random getrandom = new System.Random();
 
     //Function to get random number
@@ -79,6 +81,11 @@ public class GameController : MonoBehaviour
     public void AddToScore(int value)
     {
         Score += value;
+    }
+
+    public void AddToBoneCounter(int value)
+    {
+        BoneCounter.Count += value;
     }
 
     void Update()

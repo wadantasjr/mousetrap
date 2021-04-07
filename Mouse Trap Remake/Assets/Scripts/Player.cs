@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private Animator m_Animator;
 
     public PortalIn2Out[] portalIn2Out;
+
     private void Awake()
     {
         if (instance != null)
@@ -305,10 +306,15 @@ public class Player : MonoBehaviour
                 //    }
                 //}
                 //--------------------------------------------------------------------------------------------------------
-                case "Cheese": //Todo: Score
+                case "Cheese": 
                     GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
                     Destroy(col.gameObject);
                     break;
+                case "Bone":
+                    GameController.instance.AddToBoneCounter(1);
+                    Destroy(col.gameObject);
+                    break;
+
             }
         }
         catch (Exception e)
