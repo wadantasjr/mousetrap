@@ -33,7 +33,8 @@ Others Resources:
 ### To Do
 - Implement Mouse to Dog mechanics;
 - Implement inition position, and the animation, like the original from the arcade (partial implemented)
-
+- Bonus food mechanics;
+- Portal In Mouse´s teleport animation to destiny
 
 ### To Research
 - Initial state of the board;
@@ -41,4 +42,4 @@ Others Resources:
 - How change the gui to be responsive (Mobile version);
 - AI from the cats;
 - Bird mechanics;
-- Bonus food mechanics;
+
