@@ -9,6 +9,7 @@ TagManager:
   - PathNode
   - Cheese
   - Bone
+  - Bonus
   layers:
   - Default
   - TransparentFX
