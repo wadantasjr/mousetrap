@@ -23,12 +23,16 @@ public class GameController : MonoBehaviour
     private int Score = 0;
 
     public TMP_Text TxtScore = null;
+    public GameObject BonusValue = null;
 
     public BoneCounter BoneCounter = null;
 
     public Bonuses Bonuses = null;
 
     private static readonly System.Random getrandom = new System.Random();
+
+    [SerializeField]
+    public GameTimer GameTimer = null;
 
     //Function to get random number
     public int GetRandomNumber(int min, int max)
@@ -66,6 +70,8 @@ public class GameController : MonoBehaviour
         {
             InitializeCheeses();
         }
+
+        BonusValue.SetActive(false);
     }
 
     private void InitializeCheeses()
@@ -90,17 +96,31 @@ public class GameController : MonoBehaviour
         BoneCounter.Count += value;
     }
 
-    public void AddToBonuses(int value)
+    public void HitBonuses(Vector3 pos, int score)
     {
-        Bonuses.Count += value;
+        StartCoroutine(ShowBonusValue(pos, score));
+        Bonuses.Count++;
+    }
+
+    IEnumerator ShowBonusValue(Vector3 pos, int score)
+    {
+        BonusValue.GetComponentInChildren<TMP_Text>().text = score.ToString();
+        BonusValue.transform.position = pos + new Vector3(0,4.6f,0);
+        BonusValue.SetActive(true);
+        GameTimer.PauseStart();
+        yield return new WaitForSeconds(1);
+        BonusValue.SetActive(false);
+        GameTimer.PauseStop();
     }
 
     void Update()
     {
         //Game Loop
-
-        CheckInput();
-        RefreshScore();
+        if (!GameTimer.isPaused())
+        {
+            CheckInput();
+            RefreshScore();
+        }
     }
 
     private void RefreshScore()

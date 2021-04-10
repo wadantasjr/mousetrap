@@ -42,9 +42,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        CheckInput();
-        MovePlayer();
-        CheckCurrentNode();
+        if (!GameController.instance.GameTimer.isPaused())
+        {
+            CheckInput();
+            MovePlayer();
+            CheckCurrentNode();
+        }
     }
 
     private void CheckInput()
@@ -316,7 +319,10 @@ public class Player : MonoBehaviour
                     break;
                 case "Bonus":
                     GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
-                    GameController.instance.AddToBonuses(1);
+                    GameController.instance.HitBonuses(this.transform.position, col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
+                    col.gameObject.SetActive(false);
+                    //TODO: trocar para corotine e exibir o valor do bonus até que a pausa acabe (trocar PauseForSeconds por PauseStart e PauseStop)     
+                    //GameController.instance.GameTimer.PauseForSeconds(1);
                     //Destroy(col.gameObject);
                     break;
             }
