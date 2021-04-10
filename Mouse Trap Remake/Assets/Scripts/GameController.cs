@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour
 
     public BoneCounter BoneCounter = null;
 
+    public Bonuses Bonuses = null;
+
     private static readonly System.Random getrandom = new System.Random();
 
     //Function to get random number
@@ -86,6 +88,11 @@ public class GameController : MonoBehaviour
     public void AddToBoneCounter(int value)
     {
         BoneCounter.Count += value;
+    }
+
+    public void AddToBonuses(int value)
+    {
+        Bonuses.Count += value;
     }
 
     void Update()

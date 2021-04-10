@@ -314,7 +314,11 @@ public class Player : MonoBehaviour
                     GameController.instance.AddToBoneCounter(1);
                     Destroy(col.gameObject);
                     break;
-
+                case "Bonus":
+                    GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
+                    GameController.instance.AddToBonuses(1);
+                    //Destroy(col.gameObject);
+                    break;
             }
         }
         catch (Exception e)

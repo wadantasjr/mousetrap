@@ -11,6 +11,7 @@ public class BoneCounter : MonoBehaviour
         set
         {
             _count = (value < 0 ? 0 : (value >= 6 ? 6 : value)); //Min: 0 bones  Max: 6 bones
+            RefreshBones();
         }
         get
         {
@@ -18,8 +19,12 @@ public class BoneCounter : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
+    {
+        RefreshBones();
+    }
+
+    void RefreshBones()
     {
         for (int i = 0; i < Bones.Length; i++)
         {

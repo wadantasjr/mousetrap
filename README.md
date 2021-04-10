@@ -33,7 +33,7 @@ Others Resources:
 ### To Do
 - Implement Mouse to Dog mechanics;
 - Implement inition position, and the animation, like the original from the arcade (partial implemented)
-- Bonus food mechanics;
+- Bonus food mechanics (there is still a need to implement the value that appears above the bonus when it is eaten by the mouse);
 - Portal In Mouse´s teleport animation to destiny
 
 ### To Research
