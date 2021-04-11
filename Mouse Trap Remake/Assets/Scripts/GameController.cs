@@ -108,7 +108,7 @@ public class GameController : MonoBehaviour
         BonusValue.transform.position = pos + new Vector3(0,4.6f,0);
         BonusValue.SetActive(true);
         GameTimer.PauseStart();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         BonusValue.SetActive(false);
         GameTimer.PauseStop();
     }

@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public float speed = 4.0f;
     private Animator m_Animator;
 
+    private bool isAutoMove = false; //Used to animate the mouse running into Portal Out
+
     public PortalIn2Out[] portalIn2Out;
 
     private void Awake()
@@ -44,7 +46,9 @@ public class Player : MonoBehaviour
     {
         if (!GameController.instance.GameTimer.isPaused())
         {
-            CheckInput();
+            if (!isAutoMove)
+                CheckInput();
+
             MovePlayer();
             CheckCurrentNode();
         }
@@ -83,6 +87,7 @@ public class Player : MonoBehaviour
             if (this.transform.position == nextNode.transform.position)
             {
                 currentNode = nextNode;
+                isAutoMove = false;
             }
         }
     }
@@ -273,58 +278,44 @@ public class Player : MonoBehaviour
     {
         try
         {
-            switch (col.gameObject.tag)
+            if (!isAutoMove)
             {
-                case "Door":
-                    direction = Vector2.zero;
-                    nextNode = currentNode;
-                    this.transform.position = currentNode.transform.position;
-                    break;
-                //Old portal mechanic----------------------------------------------------------
-                //case "PathNode": //Only PathNodes with collision (trigger)
-                //    pathNodeTriggeredName = col.gameObject.name; //Extract number in the name
-                //    break;
-                //-----------------------------------------------------------------------------
-                case "Portal": //PathNode taged as Portal with collision (trigger)
-                    //modifying the mechanics of the portals for the destination portal be random, just as it is in the original game
-                    if (portalIn2Out.Length > 0)
-                    {
-                        int toPortalOut = GameController.instance.GetRandomNumber(0, portalIn2Out.Length);
+                switch (col.gameObject.tag)
+                {
+                    case "Door":
                         direction = Vector2.zero;
-                        currentNode = portalIn2Out[toPortalOut].PortalOut; ;
                         nextNode = currentNode;
                         this.transform.position = currentNode.transform.position;
-                    }
-                    break;
-                //Old portal mechanic-------------------------------------------------------------------------------------
-                //foreach (PortalIn2Out pio in portalIn2Out)
-                //{
-                //    if (pio.PortalIn.name == col.gameObject.name && pio.PathNodeTriggered.name == pathNodeTriggeredName)
-                //    {
-                //        direction = Vector2.zero;
-                //        currentNode = pio.PortalOut;
-                //        nextNode = currentNode;
-                //        this.transform.position = currentNode.transform.position;
-                //        break;
-                //    }
-                //}
-                //--------------------------------------------------------------------------------------------------------
-                case "Cheese": 
-                    GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
-                    Destroy(col.gameObject);
-                    break;
-                case "Bone":
-                    GameController.instance.AddToBoneCounter(1);
-                    Destroy(col.gameObject);
-                    break;
-                case "Bonus":
-                    GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
-                    GameController.instance.HitBonuses(this.transform.position, col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
-                    col.gameObject.SetActive(false);
-                    //TODO: trocar para corotine e exibir o valor do bonus até que a pausa acabe (trocar PauseForSeconds por PauseStart e PauseStop)     
-                    //GameController.instance.GameTimer.PauseForSeconds(1);
-                    //Destroy(col.gameObject);
-                    break;
+                        break;
+                    //Old portal mechanic----------------------------------------------------------
+                    //case "PathNode": //Only PathNodes with collision (trigger)
+                    //    pathNodeTriggeredName = col.gameObject.name; //Extract number in the name
+                    //    break;
+                    //-----------------------------------------------------------------------------
+                    case "Portal": //PathNode taged as Portal with collision (trigger)
+                                   //modifying the mechanics of the portals for the destination portal be random, just as it is in the original game
+                        if (portalIn2Out.Length > 0)
+                        {
+                            int toPortalOut = GameController.instance.GetRandomNumber(0, portalIn2Out.Length);
+                            nextNode = portalIn2Out[toPortalOut].PortalOut;
+                            direction = (nextNode.transform.position - transform.position).normalized;
+                            isAutoMove = true;
+                        }
+                        break;
+                    case "Cheese":
+                        GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
+                        Destroy(col.gameObject);
+                        break;
+                    case "Bone":
+                        GameController.instance.AddToBoneCounter(1);
+                        Destroy(col.gameObject);
+                        break;
+                    case "Bonus":
+                        GameController.instance.AddToScore(col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
+                        GameController.instance.HitBonuses(this.transform.position, col.gameObject.GetComponent<GameObjInfo>().ScorePoints);
+                        col.gameObject.SetActive(false);
+                        break;
+                }
             }
         }
         catch (Exception e)
@@ -341,15 +332,14 @@ public class Player : MonoBehaviour
         //Vector2 dirCurrentNode = (currentNode.transform.position - transform.position).normalized;
         int invertDirection = (nextNodedirection == (direction * -1)? -1 : 1);
 
-        float step = speed * Time.deltaTime * (direction != Vector2.zero ? 1 : 0);
-        if (invertDirection > 0 /*|| (direction == dirCurrentNode * -1)*/)
+        float step = speed * Time.deltaTime * (direction != Vector2.zero ? 1 : 0) * (isAutoMove ? 5 : 1);
+        if (invertDirection > 0 /*|| (direction == dirCurrentNode * -1)*/ || isAutoMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, nextNode.transform.position, step);
         }
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, currentNode.transform.position, step);
-
             //check if it is closer to curentNode than nextNode
             float d1 = (transform.position - nextNode.transform.position).sqrMagnitude;
             float d2 = (transform.position - currentNode.transform.position).sqrMagnitude;

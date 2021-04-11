@@ -30,11 +30,12 @@ Others Resources:
 - Added the original font;
 - Included "Bones" and implemented the mechanics (mouse can save a maximum of 6 bones);
 - Bonus food mechanics 
+- Mouse´s Portals teleport animation to destiny
 
 ### To Do
 - Implement Mouse to Dog mechanics;
 - Implement inition position, and the animation, like the original from the arcade (partial implemented)
-- Portal In Mouse´s teleport animation to destiny
+
 
 ### To Research
 - Initial state of the board;
